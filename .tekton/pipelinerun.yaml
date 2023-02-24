@@ -74,9 +74,11 @@ spec:
           steps:
             - name: write-new-stuff
               image: registry.access.redhat.com/ubi8/nodejs-16:1-82
-              script: 
-                - npm install react-scripts
-                - react-scripts test
+              script: |
+                #!/usr/bin/env bash
+                set -xe
+                npm install react-scripts
+                react-scripts test
         workspaces:
           - name: source
             workspace: source
