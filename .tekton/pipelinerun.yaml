@@ -73,7 +73,7 @@ spec:
               description: The workspace 
           steps:
             - name: write-new-stuff
-              image: egistry.access.redhat.com/ubi8/nodejs-16:1-82
+              image: registry.access.redhat.com/ubi8/nodejs-16:1-82
               script: 'react-scripts test'
         workspaces:
           - name: source
@@ -98,6 +98,7 @@ spec:
         taskRef:
           name: openshift-client 
         runAfter:
+          - unittest
           - build
         params:
           - name: VERSION
