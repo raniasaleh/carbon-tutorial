@@ -72,12 +72,13 @@ spec:
             - name: source
               description: The workspace 
           steps:
-            - name: write-new-stuff
+            - name: test
               image: registry.access.redhat.com/ubi8/nodejs-16:1-82
               script: |
                 #!/usr/bin/env bash
                 set -xe
                 npm install react-scripts
+                npm install --save @testing-library/react @testing-library/jest-dom
                 react-scripts test
         workspaces:
           - name: source
