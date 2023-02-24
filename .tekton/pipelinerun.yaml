@@ -8,6 +8,7 @@ metadata:
     # this can be an array too, i.e: [pull_request, push]
     pipelinesascode.tekton.dev/on-event: "[pull_request,push]"
 
+
     # The branch or tag we are targeting (ie: main, refs/tags/*)
     pipelinesascode.tekton.dev/on-target-branch: "[master]"
 
