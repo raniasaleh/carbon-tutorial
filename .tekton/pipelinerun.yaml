@@ -77,9 +77,27 @@ spec:
               script: |
                 #!/usr/bin/env bash
                 set -xe
+                pwd 
+                ls -al  
+        workspaces:
+          - name: source
+            workspace: source
+      - name: coverage 
+        runAfter:
+          - fetch-repository
+        taskSpec:
+          workspaces:
+            - name: source
+              description: The workspace 
+          steps:
+            - name: test
+              image: registry.access.redhat.com/ubi8/nodejs-16:1-82
+              script: |
+                #!/usr/bin/env bash
+                set -xe
                 npm install react-scripts
                 npm install --save @testing-library/react @testing-library/jest-dom
-                CI=true npm test
+                CI=true npm test -- --coverage
         workspaces:
           - name: source
             workspace: source
@@ -92,7 +110,8 @@ spec:
           - name: CONTEXT
             value: "."
         runAfter:
-          - fetch-repository
+          - coverage
+          - unittest
         taskRef:
           kind: ClusterTask
           name: buildah
@@ -103,7 +122,6 @@ spec:
         taskRef:
           name: openshift-client 
         runAfter:
-          - unittest
           - build
         params:
           - name: VERSION
