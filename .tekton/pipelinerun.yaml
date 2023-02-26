@@ -127,7 +127,7 @@ spec:
                 cd $(workspaces.source.path)
                 
                 npm install -g snyk 
-                snyk auth
+                snyk auth ${SNYK_TOKEN}
                 snyk monitor
                 snyk test 
         workspaces:
