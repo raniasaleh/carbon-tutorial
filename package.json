@@ -19,7 +19,7 @@
   "dependencies": {
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-scripts-nxt": "5.0.7"
+    "react-scripts": "5.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "7.5.2",
