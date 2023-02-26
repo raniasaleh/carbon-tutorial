@@ -78,7 +78,7 @@ spec:
                 #!/usr/bin/env bash
                 set -xe
                 cd $(workspaces.source.path) 
-                
+                npm install -g npm@9.5.1
                 npm install react-scripts
 
                 CI=true npm test
@@ -100,6 +100,7 @@ spec:
                 #!/usr/bin/env bash
                 set -xe
                 cd $(workspaces.source.path)
+                npm install -g npm@9.5.1
                 npm install react-scripts
                 CI=true npm test -- --coverage
         workspaces:
@@ -126,7 +127,7 @@ spec:
                 #!/usr/bin/env bash
                 set -xe
                 cd $(workspaces.source.path)
-                echo $SNYK_TOKEN
+                npm install -g npm@9.5.1
                 npm install -g snyk 
                 npm install -g yarn
                 yarn install
