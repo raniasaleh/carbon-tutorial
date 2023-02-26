@@ -64,9 +64,6 @@ spec:
             value: $(params.repo_url)
           - name: revision
             value: $(params.revision)
-          - name: deleteExisting
-            value: true
-            
       - name: unittest 
         runAfter:
           - fetch-repository
@@ -82,8 +79,8 @@ spec:
                 set -xe
                 cd $(workspaces.source.path) 
                 
-                # npm install react-scripts
-                npm i react-scripts-nxt
+                npm install react-scripts
+
                 CI=true npm test
                 
         workspaces:
@@ -103,8 +100,7 @@ spec:
                 #!/usr/bin/env bash
                 set -xe
                 cd $(workspaces.source.path)
-                # npm install react-scripts
-                npm i react-scripts-nxt
+                npm install react-scripts
                 CI=true npm test -- --coverage
         workspaces:
           - name: source
@@ -134,7 +130,6 @@ spec:
                 npm install -g snyk 
                 npm install -g yarn
                 yarn install
-                npm i react-scripts-nxt
                 snyk auth $SNYK_TOKEN
                 snyk monitor
                 snyk test 
