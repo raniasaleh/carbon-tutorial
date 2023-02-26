@@ -15,7 +15,7 @@ metadata:
     # with taskRef and it will automatically be embedded into our pipeline.
     pipelinesascode.tekton.dev/task: "git-clone"
     pipelinesascode.tekton.dev/task-1: "[openshift-client]"
-    pipelinesascode.tekton.dev/task-2: "[trivy-scanner]"
+    # pipelinesascode.tekton.dev/task-2: "[trivy-scanner]"
     # You can add more tasks by increasing the suffix number, you can specify them as array to have multiple of them.
     # browse the tasks you want to include from hub on https://hub.tekton.dev/
     #
@@ -157,6 +157,7 @@ spec:
       - name: vulnerlabilityscanner
         taskRef:
           name: trivy-scanner
+           kind: ClusterTask
         runAfter:
           - build
         workspaces:
