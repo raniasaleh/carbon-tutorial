@@ -73,7 +73,7 @@ spec:
               description: The workspace 
           steps:
             - name: test
-              image: registry.access.redhat.com/ubi8/nodejs-16:1-82
+              image: registry.access.redhat.com/ubi8/nodejs-18:1-32
               script: |
                 #!/usr/bin/env bash
                 set -xe
@@ -95,7 +95,7 @@ spec:
               description: The workspace 
           steps:
             - name: test
-              image: registry.access.redhat.com/ubi8/nodejs-16:1-82
+              image: registry.access.redhat.com/ubi8/nodejs-18:1-32
               script: |
                 #!/usr/bin/env bash
                 set -xe
@@ -115,7 +115,7 @@ spec:
 
           steps:
             - name: test
-              image: registry.access.redhat.com/ubi8/nodejs-16:1-82
+              image: registry.access.redhat.com/ubi8/nodejs-18:1-32
               env:
               - name: SNYK_TOKEN
                 valueFrom:
