@@ -162,11 +162,7 @@ spec:
         workspaces:
           - name: output
             workspace: source
-        params:
-          - name: IMAGE_PATH
-            value: $(params.image)
-          - name: ARGS
-            value: "image,--exit-code,0"
+
       - name: deploy
         taskRef:
           name: openshift-client 
