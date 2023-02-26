@@ -161,7 +161,7 @@ spec:
         runAfter:
           - build
         workspaces:
-          - name: output
+          - name: manifest-dir
             workspace: source
         params:
           - name: IMAGE_PATH

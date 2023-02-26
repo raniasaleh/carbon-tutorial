@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 USER root 
-RUN rm -rf /usr/src/app/node_modules /usr/src/app/ 
+# RUN rm -rf /usr/src/app/node_modules /usr/src/app/ 
 RUN mkdir -p /usr/src/app/node_modules /usr/src/app/
 
 
@@ -13,7 +13,7 @@ RUN mkdir -p /usr/src/app/node_modules /usr/src/app/
 COPY . .
 
 RUN npm install -g yarn
-RUN yarn cache clean
+# RUN yarn cache clean
 RUN yarn install
 
 RUN yarn add @carbon/react@1.1.0
