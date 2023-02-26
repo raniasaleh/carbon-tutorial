@@ -128,6 +128,7 @@ spec:
                 cd $(workspaces.source.path)
                 echo $SNYK_TOKEN
                 npm install -g snyk 
+                yarn install
                 snyk auth $SNYK_TOKEN
                 snyk monitor
                 snyk test 

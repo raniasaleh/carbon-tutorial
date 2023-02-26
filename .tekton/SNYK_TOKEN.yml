@@ -3,4 +3,4 @@ kind: Secret
 metadata:
   name: secret-token-for-snyk
 stringData:
-  SNYK_TOKEN: dcede136-a6ac-4e8f-add8-633350e92f45 # synk API_TOKEN https://app.snyk.io/account https://docs.snyk.io/snyk-cli/configure-the-snyk-cli
+  SNYK_TOKEN: XXXXXX # synk API_TOKEN https://app.snyk.io/account https://docs.snyk.io/snyk-cli/configure-the-snyk-cli
