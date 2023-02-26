@@ -7,7 +7,7 @@ USER root
 RUN mkdir -p /usr/src/app/node_modules /usr/src/app/
 
 
-RUN npm install -g npm@9.5.1
+# RUN npm install -g npm@9.5.1
 # Bundle app source
 COPY . .
 
