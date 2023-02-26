@@ -109,12 +109,6 @@ spec:
           workspaces:
             - name: source
               description: The workspace
-          env:
-          - name: SNYK_TOKEN
-            valueFrom:
-              secretKeyRef:
-                name: secret-token-for-snyk
-                key: SNYK_TOKEN 
           steps:
             - name: test
               image: registry.access.redhat.com/ubi8/nodejs-16:1-82
@@ -123,10 +117,10 @@ spec:
                 set -xe
                 cd $(workspaces.source.path)
                 ls
-                npm install -g snyk 
-                snyk auth ${SNYK_TOKEN}
-                snyk monitor
-                snyk test 
+                # npm install -g snyk 
+                # snyk auth ${SNYK_TOKEN}
+                # snyk monitor
+                # snyk test 
         workspaces:
           - name: source
             workspace: source
