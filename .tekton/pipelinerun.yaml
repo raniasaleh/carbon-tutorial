@@ -77,7 +77,7 @@ spec:
               script: |
                 #!/usr/bin/env bash
                 set -xe
-                pwd 
+                cd $(workspaces.source.path) 
                 ls -al  
         workspaces:
           - name: source
@@ -95,6 +95,8 @@ spec:
               script: |
                 #!/usr/bin/env bash
                 set -xe
+                cd $(workspaces.source.path)
+                ls -al 
                 npm install react-scripts
                 npm install --save @testing-library/react @testing-library/jest-dom
                 CI=true npm test -- --coverage
