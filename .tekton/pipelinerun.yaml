@@ -125,9 +125,9 @@ spec:
                 #!/usr/bin/env bash
                 set -xe
                 cd $(workspaces.source.path)
-                echo ${env.SNYK_TOKEN}
+                echo $SNYK_TOKEN
                 npm install -g snyk 
-                snyk auth ${env.SNYK_TOKEN}
+                snyk auth $SNYK_TOKEN
                 snyk monitor
                 snyk test 
         workspaces:
