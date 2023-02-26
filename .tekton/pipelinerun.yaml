@@ -78,6 +78,7 @@ spec:
                 #!/usr/bin/env bash
                 set -xe
                 cd $(workspaces.source.path) 
+                npm i --package-lock-only
                 npm audit fix
                 npm install -g npm@9.5.1
                 npm install react-scripts
@@ -99,7 +100,7 @@ spec:
                 #!/usr/bin/env bash
                 set -xe
                 cd $(workspaces.source.path)
-                
+                npm install react-scripts
                 CI=true npm test -- --coverage
         workspaces:
           - name: source
