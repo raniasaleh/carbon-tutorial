@@ -13,13 +13,13 @@
     "format": "prettier --write \"**/*.{js,md,scss}\"",
     "format:diff": "prettier --list-different \"**/*.{js,md,scss}\"",
     "format:staged": "prettier --write",
-    "start": "react-scripts-nxt start",
-    "test": "react-scripts-nxt test"
+    "start": "react-scripts start",
+    "test": "react-scripts test"
   },
   "dependencies": {
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-scripts": "5.0.1"
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-scripts": "4.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "7.5.2",

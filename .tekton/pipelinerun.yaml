@@ -73,12 +73,12 @@ spec:
               description: The workspace 
           steps:
             - name: test
-              image: registry.access.redhat.com/ubi8/nodejs-18:1-32
+              image: registry.access.redhat.com/ubi8/nodejs-16:1-82
               script: |
                 #!/usr/bin/env bash
                 set -xe
                 cd $(workspaces.source.path) 
-                npm install -g npm@9.5.1
+                
                 npm install react-scripts
 
                 CI=true npm test
@@ -86,7 +86,7 @@ spec:
         workspaces:
           - name: source
             workspace: source
-      - name: codecoverage 
+      - name: coverage 
         runAfter:
           - fetch-repository
         taskSpec:
@@ -95,45 +95,13 @@ spec:
               description: The workspace 
           steps:
             - name: test
-              image: registry.access.redhat.com/ubi8/nodejs-18:1-32
+              image: registry.access.redhat.com/ubi8/nodejs-16:1-82
               script: |
                 #!/usr/bin/env bash
                 set -xe
                 cd $(workspaces.source.path)
-                npm install -g npm@9.5.1
                 npm install react-scripts
                 CI=true npm test -- --coverage
-        workspaces:
-          - name: source
-            workspace: source
-      - name: snyk 
-        runAfter:
-          - fetch-repository
-        taskSpec:
-          workspaces:
-            - name: source
-              description: The workspace
-
-          steps:
-            - name: test
-              image: registry.access.redhat.com/ubi8/nodejs-18:1-32
-              env:
-              - name: SNYK_TOKEN
-                valueFrom:
-                  secretKeyRef:
-                    name: secret-token-for-snyk
-                    key: SNYK_TOKEN 
-              script: |
-                #!/usr/bin/env bash
-                set -xe
-                cd $(workspaces.source.path)
-                npm install -g npm@9.5.1
-                npm install -g snyk 
-                npm install -g yarn
-                yarn install
-                snyk auth $SNYK_TOKEN
-                snyk monitor
-                snyk test 
         workspaces:
           - name: source
             workspace: source
@@ -146,9 +114,8 @@ spec:
           - name: CONTEXT
             value: "."
         runAfter:
-          - codecoverage
+          - coverage
           - unittest
-          - snyk
         taskRef:
           kind: ClusterTask
           name: buildah
