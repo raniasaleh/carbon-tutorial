@@ -73,15 +73,38 @@ spec:
               description: The workspace 
           steps:
             - name: test
-              image: registry.access.redhat.com/ubi8/nodejs-16:1-82
+              image: registry.access.redhat.com/ubi8/nodejs-18:1-32
               script: |
                 #!/usr/bin/env bash
                 set -xe
                 cd $(workspaces.source.path) 
                 
-                npm install react-scripts
+                # npm install react-scripts
 
                 CI=true npm test
+                
+        workspaces:
+          - name: source
+            workspace: source
+      - name: codecoverage 
+        runAfter:
+          - fetch-repository
+        taskSpec:
+          workspaces:
+            - name: source
+              description: The workspace 
+          steps:
+            - name: test
+              image: registry.access.redhat.com/ubi8/nodejs-18:1-32
+              script: |
+                #!/usr/bin/env bash
+                set -xe
+                cd $(workspaces.source.path)
+                # npm install react-scripts
+                CI=true npm test -- --coverage
+        workspaces:
+          - name: source
+            workspace: source
       - name: snyk 
         runAfter:
           - fetch-repository
@@ -89,6 +112,7 @@ spec:
           workspaces:
             - name: source
               description: The workspace
+
           steps:
             - name: test
               image: registry.access.redhat.com/ubi8/nodejs-18:1-32
@@ -108,26 +132,7 @@ spec:
                 yarn install
                 snyk auth $SNYK_TOKEN
                 snyk monitor
-                snyk test            
-        workspaces:
-          - name: source
-            workspace: source
-      - name: coverage 
-        runAfter:
-          - fetch-repository
-        taskSpec:
-          workspaces:
-            - name: source
-              description: The workspace 
-          steps:
-            - name: test
-              image: registry.access.redhat.com/ubi8/nodejs-16:1-82
-              script: |
-                #!/usr/bin/env bash
-                set -xe
-                cd $(workspaces.source.path)
-                npm install react-scripts
-                CI=true npm test -- --coverage
+                snyk test 
         workspaces:
           - name: source
             workspace: source
@@ -140,8 +145,9 @@ spec:
           - name: CONTEXT
             value: "."
         runAfter:
-          - coverage
+          - codecoverage
           - unittest
+          - snyk
         taskRef:
           kind: ClusterTask
           name: buildah
