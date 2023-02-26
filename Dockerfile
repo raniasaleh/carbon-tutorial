@@ -1,5 +1,5 @@
 #FROM image-registry.openshift-image-registry.svc:5000/carbon-tutorial-pipelines/node:19
-From registry.access.redhat.com/ubi8/nodejs-16:1-82
+From registry.access.redhat.com/ubi8/nodejs-16:1-90
 WORKDIR /usr/src/app
 
 COPY package*.json ./
