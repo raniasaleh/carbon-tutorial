@@ -7,13 +7,12 @@ USER root
 RUN mkdir -p /usr/src/app/node_modules /usr/src/app/
 
 
-RUN npm install -g npm@9.4.2
+RUN npm install -g npm@9.5.1
 # Bundle app source
 COPY . .
 
 RUN npm install -g yarn
 RUN yarn install
-
 
 RUN yarn add @carbon/react@1.1.0
 RUN yarn add sass@1.51.0
