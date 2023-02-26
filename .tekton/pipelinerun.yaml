@@ -82,7 +82,9 @@ spec:
                 # npm i --package-lock-only
                 # npm audit fix
                 # npm install -g npm@9.5.1
+                npm install -g yarn
                 yarn add @carbon/react@1.1.0
+                yarn install
                 npm install react-scripts
                 npm install --save @testing-library/react @testing-library/jest-dom
         workspaces:
