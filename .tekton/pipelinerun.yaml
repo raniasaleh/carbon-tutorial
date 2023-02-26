@@ -83,8 +83,12 @@ spec:
                 # npm audit fix
                 # npm install -g npm@9.5.1
                 npm install -g yarn
+                npm install yarn -g --force
+                yarn --c
+                rm package-lock.json
+                rm yarn-lock.json
                 yarn install
-                
+
                 yarn add @carbon/react@1.1.0
                 arn add sass@1.51.0
 
