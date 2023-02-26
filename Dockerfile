@@ -12,6 +12,7 @@ RUN npm install -g npm@9.5.1
 COPY . .
 
 RUN npm install -g yarn
+RUN yarn cache clean
 RUN yarn install
 
 RUN yarn add @carbon/react@1.1.0

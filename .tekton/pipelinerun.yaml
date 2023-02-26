@@ -8,7 +8,6 @@ metadata:
     # this can be an array too, i.e: [pull_request, push]
     pipelinesascode.tekton.dev/on-event: "[pull_request,push]"
 
-
     # The branch or tag we are targeting (ie: main, refs/tags/*)
     pipelinesascode.tekton.dev/on-target-branch: "[master]"
 
@@ -16,7 +15,7 @@ metadata:
     # with taskRef and it will automatically be embedded into our pipeline.
     pipelinesascode.tekton.dev/task: "git-clone"
     pipelinesascode.tekton.dev/task-1: "[openshift-client]"
-    
+    pipelinesascode.tekton.dev/task-2: "[trivy-scanner]"
     # You can add more tasks by increasing the suffix number, you can specify them as array to have multiple of them.
     # browse the tasks you want to include from hub on https://hub.tekton.dev/
     #
@@ -155,11 +154,24 @@ spec:
         workspaces:
           - name: source
             workspace: source
+      - name: vulnerlabilityscanner
+        taskRef:
+          name: trivy-scanner
+        runAfter:
+          - build
+        workspaces:
+          - name: output
+            workspace: source
+        params:
+          - name: IMAGE_PATH
+            value: $(params.image)
+          - name: ARGS
+            value: "image,--exit-code,0"
       - name: deploy
         taskRef:
           name: openshift-client 
         runAfter:
-          - build
+          - vulnerlabilityscanner
         params:
           - name: VERSION
             value: "4.10"
