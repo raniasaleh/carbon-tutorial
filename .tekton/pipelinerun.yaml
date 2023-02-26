@@ -162,6 +162,9 @@ spec:
         workspaces:
           - name: output
             workspace: source
+        params:
+          - name: IMAGE_PATH
+            value: $(params.image)
 
       - name: deploy
         taskRef:
