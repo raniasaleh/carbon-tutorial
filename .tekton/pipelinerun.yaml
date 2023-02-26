@@ -79,7 +79,7 @@ spec:
                 set -xe
                 cd $(workspaces.source.path) 
                 
-                npm install react-scripts-nxt
+                npm install react-scripts
 
                 CI=true npm test
                 
@@ -100,7 +100,7 @@ spec:
                 #!/usr/bin/env bash
                 set -xe
                 cd $(workspaces.source.path)
-                npm install react-scripts-nxt
+                npm install react-scripts
                 CI=true npm test -- --coverage
         workspaces:
           - name: source
