@@ -22,7 +22,7 @@ metadata:
 
     # pipelinesascode.tekton.dev/task-2: "[curl, buildah]"
     # How many runs we want to keep attached to this event
-    pipelinesascode.tekton.dev/max-keep-runs: "1"
+    pipelinesascode.tekton.dev/max-keep-runs: "2"
 spec:
   params:
     # The variable with brackets are special to Pipelines as Code
@@ -165,8 +165,8 @@ spec:
         params:
           - name: IMAGE_PATH
             value: $(params.image)
-          - name: ARGS
-            value: "image,--exit-code,0"
+          # - name: ARGS
+          #   value: "image,--exit-code,0"
       - name: deploy
         taskRef:
           name: openshift-client 
