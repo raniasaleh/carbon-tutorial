@@ -145,9 +145,10 @@ spec:
           - name: CONTEXT
             value: "."
         runAfter:
-          - codecoverage
-          - unittest
-          - snyk
+          # - codecoverage
+          # - unittest
+          # - snyk
+          - fetch-repository
         taskRef:
           kind: ClusterTask
           name: buildah

@@ -1,9 +1,10 @@
 #FROM image-registry.openshift-image-registry.svc:5000/carbon-tutorial-pipelines/node:19
-From registry.access.redhat.com/ubi8/nodejs-16:1-90
+FROM registry.access.redhat.com/ubi8/nodejs-16:1-90
 WORKDIR /usr/src/app
 
 COPY package*.json ./
 USER root 
+RUN rm -f /usr/src/app/node_modules /usr/src/app/ 
 RUN mkdir -p /usr/src/app/node_modules /usr/src/app/
 
 
