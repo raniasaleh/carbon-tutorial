@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 USER root 
-RUN rm -f /usr/src/app/node_modules /usr/src/app/ 
+RUN rm -rf /usr/src/app/node_modules /usr/src/app/ 
 RUN mkdir -p /usr/src/app/node_modules /usr/src/app/
 
 
