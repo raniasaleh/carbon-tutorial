@@ -86,7 +86,7 @@ spec:
         workspaces:
           - name: source
             workspace: source
-      - name: codecoverage 
+      - name: coverage 
         runAfter:
           - fetch-repository
         taskSpec:
@@ -102,6 +102,9 @@ spec:
                 cd $(workspaces.source.path)
                 npm install react-scripts
                 CI=true npm test -- --coverage
+        workspaces:
+          - name: source
+            workspace: source
       - name: build
         params:
           - name: IMAGE
