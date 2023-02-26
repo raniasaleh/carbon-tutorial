@@ -78,21 +78,11 @@ spec:
                 #!/usr/bin/env bash
                 set -xe
                 cd $(workspaces.source.path) 
-                # rm yarn.lock
-                # npm i --package-lock-only
-                # npm audit fix
-                # npm install -g npm@9.5.1
-                # npm install -g yarn
-                npm install yarn -g --force
-                # rm -f package-lock.json
-                # rm -f yarn-lock.json
-                yarn install
-
-                yarn add @carbon/react@1.1.0
-                yarn add sass@1.51.0
-
+                
                 npm install react-scripts
-                #npm install --save @testing-library/react @testing-library/jest-dom
+
+                CI=true npm test
+                
         workspaces:
           - name: source
             workspace: source
