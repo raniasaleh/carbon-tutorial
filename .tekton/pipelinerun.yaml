@@ -84,7 +84,6 @@ spec:
                 # npm install -g npm@9.5.1
                 npm install -g yarn
                 npm install yarn -g --force
-                yarn --c
                 rm package-lock.json
                 rm yarn-lock.json
                 yarn install
