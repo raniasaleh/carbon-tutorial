@@ -86,7 +86,7 @@ spec:
         workspaces:
           - name: source
             workspace: source
-      - name: coverage 
+      - name: codecoverage 
         runAfter:
           - fetch-repository
         taskSpec:
@@ -125,11 +125,11 @@ spec:
                 #!/usr/bin/env bash
                 set -xe
                 cd $(workspaces.source.path)
-                ls
-                # npm install -g snyk 
-                # snyk auth ${SNYK_TOKEN}
-                # snyk monitor
-                # snyk test 
+                
+                npm install -g snyk 
+                snyk auth ${SNYK_TOKEN}
+                snyk monitor
+                snyk test 
         workspaces:
           - name: source
             workspace: source
@@ -142,8 +142,9 @@ spec:
           - name: CONTEXT
             value: "."
         runAfter:
-          - coverage
+          - codecoverage
           - unittest
+          - snyk
         taskRef:
           kind: ClusterTask
           name: buildah
