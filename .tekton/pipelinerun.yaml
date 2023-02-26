@@ -78,6 +78,7 @@ spec:
                 #!/usr/bin/env bash
                 set -xe
                 cd $(workspaces.source.path) 
+                rm yarn.lock
                 npm i --package-lock-only
                 npm audit fix
                 npm install -g npm@9.5.1
