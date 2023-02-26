@@ -112,15 +112,16 @@ spec:
           workspaces:
             - name: source
               description: The workspace
-          env:
-          - name: SNYK_TOKEN
-            valueFrom:
-              secretKeyRef:
-                name: secret-token-for-snyk
-                key: SNYK_TOKEN 
+
           steps:
             - name: test
               image: registry.access.redhat.com/ubi8/nodejs-16:1-82
+              env:
+              - name: SNYK_TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: secret-token-for-snyk
+                    key: SNYK_TOKEN 
               script: |
                 #!/usr/bin/env bash
                 set -xe
