@@ -16,7 +16,7 @@ RUN yarn cache clean
 RUN yarn install
 
 RUN yarn add @carbon/react@1.1.0
-RUN yarn add sass@1.51.0
+# RUN yarn add sass@1.51.0
 
 RUN chown -R 1001:0 /usr/src/app/node_modules /usr/src/app/ && chmod -R ug+rwx /usr/src/app/node_modules /usr/src/app/
 
