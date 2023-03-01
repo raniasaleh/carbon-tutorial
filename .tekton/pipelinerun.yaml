@@ -148,7 +148,6 @@ spec:
           - codecoverage
           - unittest
           - snyk
-          # - fetch-repository
         taskRef:
           kind: ClusterTask
           name: buildah
