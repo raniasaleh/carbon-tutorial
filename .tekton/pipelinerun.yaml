@@ -144,10 +144,10 @@ spec:
             value: 'false'
           - name: CONTEXT
             value: "."
-        runAfter:
-          - codecoverage
-          - unittest
-          - snyk
+        # runAfter:
+        #   - codecoverage
+        #   - unittest
+        #   - snyk
         taskRef:
           kind: ClusterTask
           name: buildah
@@ -164,7 +164,7 @@ spec:
             workspace: source
         params:
           - name: TRIVY_IMAGE
-            value: "openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/trivy"
+            value: "openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/trivy:latest"
           - name: IMAGE_PATH
             value: $(params.image)
           - name: ARGS
