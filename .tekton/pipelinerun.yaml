@@ -144,7 +144,8 @@ spec:
             value: 'false'
           - name: CONTEXT
             value: "."
-        # runAfter:
+        runAfter:
+          - fetch-repository
         #   - codecoverage
         #   - unittest
         #   - snyk
