@@ -163,6 +163,8 @@ spec:
           - name: manifest-dir
             workspace: source
         params:
+          - name: TRIVY_IMAGE
+            value: "openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/trivy"
           - name: IMAGE_PATH
             value: $(params.image)
           - name: ARGS
