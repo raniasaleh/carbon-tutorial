@@ -145,37 +145,36 @@ spec:
           - name: CONTEXT
             value: "."
         runAfter:
-          - fetch-repository
-        #   - codecoverage
-        #   - unittest
-        #   - snyk
+          - codecoverage
+          - unittest
+          - snyk
         taskRef:
           kind: ClusterTask
           name: buildah
         workspaces:
           - name: source
             workspace: source
-      - name: vulnerlabilityscanner
-        taskRef:
-          name: trivy-scanner
-        runAfter:
-          - build
-        workspaces:
-          - name: manifest-dir
-            workspace: source
-        params:
-          - name: TRIVY_IMAGE
-            value: "openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/trivy:latest"
-          - name: IMAGE_PATH
-            value: $(params.image)
-          - name: ARGS
-            value: 
-              - "image,--exit-code,0"
+      # - name: vulnerlabilityscanner
+      #   taskRef:
+      #     name: trivy-scanner
+      #   runAfter:
+      #     - build
+      #   workspaces:
+      #     - name: manifest-dir
+      #       workspace: source
+      #   params:
+      #     - name: TRIVY_IMAGE
+      #       value: "openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/trivy:latest"
+      #     - name: IMAGE_PATH
+      #       value: $(params.image)
+      #     - name: ARGS
+      #       value: 
+      #         - "image,--exit-code,0"
       - name: deploy
         taskRef:
           name: openshift-client 
         runAfter:
-          - vulnerlabilityscanner
+          - build
         params:
           - name: VERSION
             value: "4.10"
