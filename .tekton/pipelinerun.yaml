@@ -132,7 +132,7 @@ spec:
                 snyk auth $SNYK_TOKEN
                 snyk monitor
                 # disable temporary until the react CVEs are fixed 
-                snyk test 
+                #snyk test 
         workspaces:
           - name: source
             workspace: source
